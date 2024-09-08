@@ -11,6 +11,7 @@ catkin_make
 ```
 ## Mapping
 To do 2D mapping:
+- ensure that you do not drive/turn the Jackal bot too quickly, otherwise accuracy might be affected
 ```
 roslaunch jackal_navigation gmapping_demo.launch
 roslaunch jackal_viz view_robot.launch config:=gmapping
