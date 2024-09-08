@@ -35,7 +35,7 @@ roslaunch jackal_viz view_robot.launch config:=gmapping
 rosrun map_server map_saver -f mymap 
 ```
 
-To run navigation stack:
+To run navigation stack with your new map:
 ```
 roslaunch jackal_navigation amcl_demo.launch [map_file:=/path/to/mymap.yaml]
 ```
