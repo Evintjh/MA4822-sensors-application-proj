@@ -37,7 +37,7 @@ rosrun map_server map_saver -f mymap
 
 To run navigation stack:
 ```
-roslaunch jackal_navigation amcl_demo.launch
+roslaunch jackal_navigation amcl_demo.launch [map_file:=/path/to/mymap.yaml]
 ```
 
 
