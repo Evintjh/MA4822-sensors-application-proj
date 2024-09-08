@@ -12,8 +12,9 @@ roscore
 ```
 
 For visualisation:
+- use the rviz UI to open the config file, ma4822_jackal.rviz, in the repo
 ```
-rviz # use the UI to open the config file, ma4822_jackal.rviz, in the repo
+rviz 
 ```
 
 - To run simulator with robot_localization package (for sensor fusion):
