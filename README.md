@@ -1,6 +1,6 @@
 ## Installation
 - this repo was tested on Ubuntu 20.04 with ROS noetic
-- there are quite a few dependencies that are not included in this repo. If you face any error while doing catkin_make, run sudo apt-get install ros-noetic-<dependencies>
+- there are quite a few dependencies that are not included in this repo. If you face any error while doing **catkin_make**, run **sudo apt-get install ros-noetic-(dependencies)**
 ```
 git clone https://github.com/Evintjh/MA4822-sensors-application-proj.git
 catkin_make
