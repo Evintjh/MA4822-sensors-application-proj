@@ -2,7 +2,10 @@
 - this repo was tested on Ubuntu 20.04 with ROS noetic
 - there are quite a few dependencies that are not included in this repo. If you face any error while doing **catkin_make**, run **sudo apt-get install ros-noetic-(dependencies)**
 ```
-sudo apt-get install ros-noetic-map-server
+sudo apt install ros-noetic-twist-mux
+sudo apt install ros-noetic-teleop-twist-joy
+sudo apt install ros-noetic-interactive-marker-twist-server
+sudo apt install ros-noetic-map-server
 sudo apt install ros-noetic-jackal-desktop
 sudo apt install ros-noetic-hector-gazebo-plugins
 suod apt install map_server
