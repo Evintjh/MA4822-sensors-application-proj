@@ -9,6 +9,14 @@ suod apt install map_server
 git clone https://github.com/Evintjh/MA4822-sensors-application-proj.git
 catkin_make
 ```
+## Mapping
+To do 2D mapping:
+```
+roslaunch jackal_navigation gmapping_demo.launch
+roslaunch jackal_viz view_robot.launch config:=gmapping
+# To save map in your current directory:
+rosrun map_server map_saver -f mymap 
+```
 
 ## Testing 
 ```
@@ -27,13 +35,6 @@ To run simulator with robot_localization package (for sensor fusion):
 roslaunch jackal_gazebo jackal_world.launch 
 ```
 
-To do 2D mapping:
-```
-roslaunch jackal_navigation gmapping_demo.launch
-roslaunch jackal_viz view_robot.launch config:=gmapping
-# To save map in your current directory:
-rosrun map_server map_saver -f mymap 
-```
 
 To run navigation stack with your new map:
 ```
