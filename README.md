@@ -11,7 +11,12 @@ catkin_make
 roscore 
 ```
 
-- To run simulator with robot_localization package (for sensor fusion)
+For visualisation:
+```
+rviz # use the UI to open the config file, ma4822_jackal.rviz, in the repo
+```
+
+- To run simulator with robot_localization package (for sensor fusion):
 ```
 roslaunch jackal_gazebo jackal_world.launch 
 ```
@@ -20,3 +25,6 @@ roslaunch jackal_gazebo jackal_world.launch
 ```
 roslaunch jackal_navigation amcl_demo.launch
 ```
+
+## Current problems:
+- IMU might cause drift after staying stationary for awhile. Still looking up on solutions for that.
