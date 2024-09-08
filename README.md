@@ -17,15 +17,18 @@ For visualisation:
 rviz 
 ```
 
-- To run simulator with robot_localization package (for sensor fusion):
+
+To run simulator with robot_localization package (for sensor fusion):
 ```
 roslaunch jackal_gazebo jackal_world.launch 
 ```
 
-- To run navigation stack:
+
+To run navigation stack:
 ```
 roslaunch jackal_navigation amcl_demo.launch
 ```
 
+
 ## Current problems:
-- IMU might cause drift after staying stationary for awhile. Still looking up on solutions for that.
+- IMU causes drift after staying stationary for awhile. Still looking up on solutions for that.
