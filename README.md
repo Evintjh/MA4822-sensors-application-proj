@@ -18,7 +18,7 @@ roslaunch jackal_viz view_robot.launch config:=gmapping
 rosrun map_server map_saver -f mymap 
 ```
 
-## Testing 
+## Testing Navigation Stack
 ```
 roscore 
 ```
