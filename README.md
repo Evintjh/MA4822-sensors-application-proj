@@ -3,6 +3,7 @@
 - there are quite a few dependencies that are not included in this repo. If you face any error while doing **catkin_make**, run **sudo apt-get install ros-noetic-(dependencies)**
 ```
 sudo apt install ros-noetic-twist-mux
+sudo apt install libgeographic-dev
 sudo apt install ros-noetic-teleop-twist-joy
 sudo apt install ros-noetic-interactive-marker-twist-server
 sudo apt install ros-noetic-map-server
