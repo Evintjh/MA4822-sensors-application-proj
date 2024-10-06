@@ -14,8 +14,8 @@ git clone https://github.com/Evintjh/MA4822-sensors-application-proj.git
 catkin_make
 ```
 ## Localisation/Sensor fusion
-- Default sensor fusion: odom + IMU
-- To test out sensor fusion of odom + IMU + gps:
+- Default sensor fusion: odom + IMU, rostopic: /odometry/filtered
+- To test out sensor fusion of odom + IMU + gps, rostopic: /odometry/gps
 ```
 roslaunch robot_localization navsat_transform_template.launch
 ```
