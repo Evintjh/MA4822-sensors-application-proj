@@ -13,6 +13,13 @@ suod apt install map_server
 git clone https://github.com/Evintjh/MA4822-sensors-application-proj.git
 catkin_make
 ```
+## Localisation/Sensor fusion
+- Default sensor fusion: odom + IMU
+- To test out sensor fusion of odom + IMU + gps:
+```
+roslaunch robot_localization navsat_transform_template.launch
+```
+
 ## Mapping
 To do 2D mapping:
 - ensure that you do not drive/turn the Jackal bot too quickly, otherwise accuracy might be affected
