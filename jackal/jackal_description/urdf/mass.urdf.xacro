@@ -17,7 +17,7 @@
   <xacro:property name="stretcher_length" value="1.26" />
   <xacro:property name="stretcher_width" value="0.620" />
   <xacro:property name="stretcher_height" value="0.05" />
-  <xacro:property name="stretcher_mount_dist" value="0.05" />
+  <xacro:property name="stretcher_mount_dist" value="0.10" />
 
   <xacro:property name="dummy_inertia" value="1e-09"/>
 
@@ -232,22 +232,29 @@
   </joint>
 
   <!-- Stretcher -->
-  <link name="base_stretcher">
+  <link name="base_stretcher_link">
     <visual>
       <geometry>
         <box size="${stretcher_length} ${stretcher_width} ${stretcher_height}" />
       </geometry>
+      <origin xyz="0 0 0" />
       <material name="navy" />
     </visual>
+    <collision>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <box size="${stretcher_length} ${stretcher_width} ${stretcher_height}" />
+      </geometry>
+    </collision>
   </link>
   <joint name="base_stretcher_joint" type="fixed">
     <parent link="chassis_link" />
-    <child link="base_stretcher" />
+    <child link="base_stretcher_link" />
     <origin xyz="0 0 ${chassis_height + stretcher_mount_dist}" />
   </joint>
 
   <xacro:macro name="handle" params="prefix reflect">
-    <link name="${prefix}_handle">
+    <link name="${prefix}_handle_link">
       <visual>
         <geometry>
           <cylinder length="${stretcher_length+0.5}" radius="${stretcher_height/2}"/>
@@ -255,12 +262,22 @@
         <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
         <material name="light_grey" />
       </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+        <geometry>
+          <cylinder length="${stretcher_length+0.5}" radius="${stretcher_height/2}"/>
+        </geometry>
+      </collision>
     </link>
     <joint name="${prefix}_handle_joint" type="fixed">
-        <parent link="base_stretcher"/>
-        <child link="${prefix}_handle"/>
+        <parent link="base_stretcher_link"/>
+        <child link="${prefix}_handle_link"/>
         <origin xyz="0 ${reflect*(stretcher_width/2 + stretcher_height/2)} ${stretcher_height/4}" />
     </joint>
+    <gazebo reference="${prefix}_handle_link">
+      <material>Gazebo/White</material>
+      <selfCollide>false</selfCollide>
+    </gazebo>
   </xacro:macro>
   <xacro:handle prefix="right" reflect="1" />
   <xacro:handle prefix="left" reflect="-1" />
@@ -288,7 +305,7 @@
 
 
   <!-- Bring in simulation data for Gazebo. -->
-  <xacro:include filename="$(find jackal_description)/urdf/jackal.gazebo" />
+  <xacro:include filename="$(find jackal_description)/urdf/mass.gazebo" />
 
   <!-- Optional standard accessories, including their simulation data. The rendering
        of these into the final description is controlled by optenv variables, which
