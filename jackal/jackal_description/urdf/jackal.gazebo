@@ -36,19 +36,56 @@
 
   <gazebo>
     <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
-      <updateRate>40</updateRate>
+      <alwayson>true</alwayson>
+      <updateRate>4</updateRate>
       <robotNamespace>/</robotNamespace>
       <bodyName>navsat_link</bodyName>
       <frameId>base_link</frameId>
-      <topicName>/navsat/fix</topicName>
-      <velocityTopicName>/navsat/vel</velocityTopicName>
+      <topicName>/gps/fix</topicName>
+      <velocityTopicName>/gps/vel</velocityTopicName>
       <referenceLatitude>$(optenv GAZEBO_WORLD_LAT 49.9)</referenceLatitude>
       <referenceLongitude>$(optenv GAZEBO_WORLD_LON 8.9)</referenceLongitude>
       <referenceHeading>90</referenceHeading>
       <referenceAltitude>0</referenceAltitude>
-      <drift>0.0001 0.0001 0.0001</drift>
+      <drift>0.001 0.001 0.001</drift>
+      <gaussianNoise>2.0 2.0 2.0</gaussianNoise>
+      <velocityDrift>0.001 0.001 0.001</velocityDrift>
+      <velocityGaussianNoise>2.5 2.5 2.5</velocityGaussianNoise>
     </plugin>
   </gazebo>
+
+  <!-- <gazebo>
+    <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <alwayson>true</alwayson>
+      <updateRate>4</updateRate>
+      <bodyname>base_link</bodyname>
+      <topicname>/fix</topicname>
+      <velocitytopicname>/fix_velocity</velocitytopicname>
+      <drift>5.0 5.0 5.0</drift>
+      <gaussiannoise>0.1 0.1 0.1</gaussiannoise>
+      <velocitydrift>0 0 0</velocitydrift>
+      <velocitygaussiannoise>0.1 0.1 0.1</velocitygaussiannoise>
+      </plugin>
+  </gazebo> -->
+
+  <!-- <gazebo>
+    <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <updateRate>4.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <frameId>base_link</frameId>
+      <topicName>/gps/fix</topicName>
+      <velocityTopicName>/gps/fix_velocity</velocityTopicName>
+      <referenceLatitude>-30.06022459407145675</referenceLatitude>
+      <referenceLongitude>-51.173913575780311191</referenceLongitude>
+      <referenceHeading>90</referenceHeading>
+      <referenceAltitude>10</referenceAltitude>
+      <offset>0 0 0</offset>
+      <drift>0.001 0.001 0.001</drift>
+      <gaussianNoise>0.05 0.05 0.05</gaussianNoise>
+      <velocityDrift>0.001 0.001 0.001</velocityDrift>
+      <velocityGaussianNoise>0.5 0.5 0.5</velocityGaussianNoise>
+    </plugin>
+  </gazebo> -->
 
   <gazebo reference="base_link">
     <turnGravityOff>false</turnGravityOff>
