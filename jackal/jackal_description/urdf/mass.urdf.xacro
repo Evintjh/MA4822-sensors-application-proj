@@ -17,7 +17,7 @@
   <xacro:property name="stretcher_length" value="1.26" />
   <xacro:property name="stretcher_width" value="0.620" />
   <xacro:property name="stretcher_height" value="0.05" />
-  <xacro:property name="stretcher_mount_dist" value="0.10" />
+  <xacro:property name="stretcher_mount_dist" value="0.216" />
 
   <xacro:property name="dummy_inertia" value="1e-09"/>
 
@@ -237,11 +237,11 @@
       <geometry>
         <box size="${stretcher_length} ${stretcher_width} ${stretcher_height}" />
       </geometry>
-      <origin xyz="0 0 0" />
+      <origin xyz="0 0 ${stretcher_mount_dist}" />
       <material name="navy" />
     </visual>
     <collision>
-      <origin xyz="0 0 0" />
+      <origin xyz="0 0 ${stretcher_mount_dist}" />
       <geometry>
         <box size="${stretcher_length} ${stretcher_width} ${stretcher_height}" />
       </geometry>
@@ -250,20 +250,20 @@
   <joint name="base_stretcher_joint" type="fixed">
     <parent link="chassis_link" />
     <child link="base_stretcher_link" />
-    <origin xyz="0 0 ${chassis_height + stretcher_mount_dist}" />
+    <origin xyz="0 0 ${chassis_height}" />
   </joint>
 
-  <xacro:macro name="handle" params="prefix reflect">
+  <xacro:macro name="stretcher_handle" params="prefix reflect">
     <link name="${prefix}_handle_link">
       <visual>
         <geometry>
           <cylinder length="${stretcher_length+0.5}" radius="${stretcher_height/2}"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+        <origin xyz="0 0 ${stretcher_mount_dist}" rpy="0 ${PI/2} 0"/>
         <material name="light_grey" />
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+        <origin xyz="0 0 ${stretcher_mount_dist}" rpy="0 ${PI/2} 0"/>
         <geometry>
           <cylinder length="${stretcher_length+0.5}" radius="${stretcher_height/2}"/>
         </geometry>
@@ -279,8 +279,42 @@
       <selfCollide>false</selfCollide>
     </gazebo>
   </xacro:macro>
-  <xacro:handle prefix="right" reflect="1" />
-  <xacro:handle prefix="left" reflect="-1" />
+  <xacro:stretcher_handle prefix="right" reflect="1" />
+  <xacro:stretcher_handle prefix="left" reflect="-1" />
+
+
+  <xacro:macro name="stretcher_support" params="prefix x_offset y_offset z_offset">
+    <link name="${prefix}_support_link">
+      <visual>
+        <geometry>
+          <cylinder length="${stretcher_mount_dist}" radius="0.02" />
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <material name="light_grey" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder length="${stretcher_mount_dist}" radius="0.02" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_support_joint" type="fixed">
+      <parent link="chassis_link" />
+      <child link="${prefix}_support_link" />
+      <origin xyz="${x_offset} ${y_offset} ${z_offset}" rpy="0 0 0" />
+    </joint>
+  </xacro:macro>
+
+  <!-- Front right and left supports -->
+  <xacro:stretcher_support prefix="front_right" x_offset="${mount_spacing}" y_offset="${stretcher_width/5}" z_offset="${chassis_height/2 * 3}" />
+  <xacro:stretcher_support prefix="front_left" x_offset="${mount_spacing}" y_offset="${-stretcher_width/5}" z_offset="${chassis_height/2 * 3}" />
+
+  <!-- Rear right and left supports -->
+  <xacro:stretcher_support prefix="rear_right" x_offset="${-mount_spacing}" y_offset="${stretcher_width/5}" z_offset="${chassis_height/2 * 3}" />
+  <xacro:stretcher_support prefix="rear_left" x_offset="${-mount_spacing}" y_offset="${-stretcher_width/5}" z_offset="${chassis_height/2 * 3}" />
+
+
 
   <link name="mid_mount"></link>
   <joint name="mid_mount_joint" type="fixed">
