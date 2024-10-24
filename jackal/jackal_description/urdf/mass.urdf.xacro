@@ -287,7 +287,7 @@
     <link name="${prefix}_support_link">
       <visual>
         <geometry>
-          <cylinder length="${stretcher_mount_dist}" radius="0.02" />
+          <cylinder length="${stretcher_mount_dist}" radius="0.007" />
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <material name="light_grey" />
@@ -295,7 +295,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <cylinder length="${stretcher_mount_dist}" radius="0.02" />
+          <cylinder length="${stretcher_mount_dist}" radius="0.007" />
         </geometry>
       </collision>
     </link>
