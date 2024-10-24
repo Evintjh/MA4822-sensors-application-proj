@@ -44,13 +44,13 @@ rviz
 
 To run simulator with robot_localization package (for sensor fusion):
 ```
-roslaunch jackal_gazebo jackal_world.launch 
+roslaunch jackal_gazebo hospital.launch
 ```
 
 
 To run navigation stack with your new map:
 ```
-roslaunch jackal_navigation amcl_demo.launch [map_file:=/path/to/mymap.yaml]
+roslaunch jackal_navigation amcl_demo.launch 
 ```
 
 
